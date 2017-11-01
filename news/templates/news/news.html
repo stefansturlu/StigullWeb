@@ -1,0 +1,16 @@
+{% extends "home/layout.html" %}
+
+{% block content %}
+
+<section class="container-fluid" id="news">
+  <h1>Fréttir</h1>
+  <div class="container">
+
+    {% for post in object_list %}
+      <h5>{{ post.date|date:"Y-m-d" }}<a href="/news/{{post.id}}"> {{post.title}}</a></h5>
+    {% endfor %}
+
+  </div>
+</section>
+
+{% endblock %}

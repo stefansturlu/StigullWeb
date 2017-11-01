@@ -1,0 +1,178 @@
+{% extends "home/layout.html" %}
+{% load staticfiles %}
+
+{% block head %}
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+          <img src="{% static 'home/img/Logo_2048_white.png' %}" width="25%" class="" alt="Logo">
+          <h1 id="homeHeading">Stigull</h1>
+          <hr>
+          <p>Nemendafélag stærðfræði- og eðlisfræðinema við Háskóla Íslands</p>
+          <a href="#about" class="btn btn-primary btn-xl page-scroll">Um Stigul</a>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="bg-primary" id="about">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2 text-center">
+                <h2 class="section-heading">Hvað er Stigull?</h2>
+                <hr class="light">
+                <p class="text-faded">
+                  Stigull er nemendafélag eðlisfræði- og stærðfræðinema við <a href="https://www.hi.is" class="text-faded"> Háskóla Íslands</a>.
+                  Félagslífið í Stigli er afar öflugt. Félagið sér um að skipuleggja viðburði, sem eru nauðsynlegur hluti af félagslífi háskólanema.
+                </p>
+                <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Ég vil vita meira!</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Gagnlegar upplýsingar</h2>
+                <hr class="primary">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+                    <h3>Fréttir</h3>
+                    <p class="text-muted">Á síðunni er hægt að nálgast fréttir nemendafélagsins, t.d. um árshátíðir, útilegur, bíóferðir og margt fleira!</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 text-center">
+                <div class="service-box">
+                  <i class="fa fa-4x fa-flask text-primary sr-icons"></i>
+                  <i class="fa fa-4x fa-group text-primary sr-icons"></i>
+                  <h3>Vísindaferðir</h3>
+                    <p class="text-muted">Stiglum er boðið að heimsækja fyrirtæki til að kynnast starfsemi þeirra. Frábær leið til að kynnast atvinnulífinu og samnemendum.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-balance-scale text-primary sr-icons"></i>
+                    <h3>Lög félagsins</h3>
+                    <p class="text-muted">Með lögum skal land byggja. Og nemendafélag. Hægt er að nálgast lög Stiguls á vefnum.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 text-center">
+                <div class="service-box">
+                  <i class="fa fa-4x fa-gears text-primary sr-icons"></i>
+                    <h3>Í vinnslu</h3>
+                    <p class="text-muted">Þessi glænýja síða er enn í vinnslu. Allar ábendingar eru vel þegnar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--
+<section class="no-padding" id="portfolio">
+    <div class="container-fluid">
+        <div class="row no-gutter popup-gallery">
+            <div class="col-lg-4 col-sm-6">
+                <a href="{% static 'home/img/portfolio/fullsize/1.jpg' %}" class="portfolio-box">
+                    <img src="{% static 'home/img/portfolio/thumbnails/1.jpg' %}" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="{% static 'home/img/portfolio/fullsize/2.jpg' %}" class="portfolio-box">
+                    <img src="{% static 'home/img/portfolio/thumbnails/2.jpg' %}" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="{% static 'home/img/portfolio/fullsize/3.jpg' %}" class="portfolio-box">
+                    <img src="{% static 'home/img/portfolio/thumbnails/3.jpg' %}" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="{% static 'home/img/portfolio/fullsize/4.jpg' %}" class="portfolio-box">
+                    <img src="{% static 'home/img/portfolio/thumbnails/4.jpg' %}" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="{% static 'home/img/portfolio/fullsize/5.jpg' %}" class="portfolio-box">
+                    <img src="{% static 'home/img/portfolio/thumbnails/5.jpg' %}" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="{% static 'home/img/portfolio/fullsize/6.jpg' %}" class="portfolio-box">
+                    <img src="{% static 'home/img/portfolio/thumbnails/6.jpg' %}" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+
+{% endblock %}

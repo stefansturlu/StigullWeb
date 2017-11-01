@@ -1,0 +1,11 @@
+{% extends "home/layout.html" %}
+
+{% block content %}
+<section class="container-fluid">
+  <h2>{{post.title}}</h2>
+  <p>{{post.date|date:'d. F'}}</p>
+  <article>
+    {{post.body|safe|linebreaks}}
+  </article>
+</section>
+{% endblock %}

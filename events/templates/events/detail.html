@@ -1,0 +1,27 @@
+{% extends 'home/layout.html' %}
+
+{% block content %}
+<section class="container-fluid">
+  <h1> {{ event.title }} </h1>
+  <h2> {{ event.location }} </h2>
+  <h3> {{ event.starts|date:"d. F" }} frá {{ event.starts|date:"H:i" }} til {{ event.ends|date:"H:i" }} </h3>
+  <h4> Mæting {{ event.arrive_where }} klukkan {{ event.arrive_when|date:"Y-m-d H:i" }}  </h4>
+  <h5> Hámarksfjöldi gesta er {{ event.registration_limit }}</h5>
+  <h6> Skráning hefst {{ event.registration_starts|date:"l H:i" }} </h6>
+  <p> {{ event.info }} </p>
+
+{% if user.is_authenticated %}
+  {% if user in event.get_attending_users %}
+  <a href="{% url 'events:event_cancel_attendance' pk=event.pk %}" class="btn btn-danger"> Afskráning</a>
+  {% else %}
+  <a href="{% url 'events:event_add_attendance' pk=event.pk %}" class="btn btn-success"> Skráning</a>
+  {% endif %}
+{% endif %}
+  <br><br>
+  <ol type="1">
+    {% for c in event.get_registrations %}
+    <li>{{ c.user.first_name }} {{ c.user.last_name}} - {{ c.time_registered|date:"d. F, H:i:s" }}</li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}

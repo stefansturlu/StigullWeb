@@ -1,0 +1,14 @@
+{% extends 'home/layout.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<section class="container-fluid">
+  <h2>Innskráning</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+</section>
+{% endblock %}

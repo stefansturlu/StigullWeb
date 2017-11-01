@@ -1,0 +1,13 @@
+{% extends 'home/layout.html' %}
+
+{% block content %}
+<section class="container-fluid">
+  <h1>Viðburðir</h1>
+  <ul>
+    {% for event in event_list %}
+      <li><a href="{% url 'events:detail' event.id %}">{{ event.title }} </a></li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% endblock %}
