@@ -37,7 +37,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{% static '/favicon/favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static '/favicon/favicon-16x16.png' %}">
   <link rel="manifest" href="{% static '/favicon/manifest.json' %}">
-  <link rel="mask-icon" href="{% static '/favicon/safari-pinned-tab.svg' %}" color="#ff7700">
+  <link rel="mask-icon" href="{% static '/favicon/safari-pinned-tab.svg' %}" color="#f05f40">
   <link rel="shortcut icon" href="{% static '/favicon/favicon.ico' %}">
   <meta name="msapplication-config" content="{% static '/favicon/browserconfig.xml' %}">
   <meta name="theme-color" content="#ffffff">
@@ -60,6 +60,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
 
+<!-- Hafa login input i navbar
           {% if not request.user.is_authenticated and not "login" in request.get_full_path %}
             <li>
               <form class="navbar-form navbar-right" action="{% url 'login' %}" method="post">{% csrf_token %}
@@ -73,7 +74,7 @@
               <a href="/logout/">{{ user.first_name }} - Útskráning</a>
             </li>
           {% endif %}
-
+-->
           <li>
             <a href="/">Heim</a>
           </li>
@@ -130,7 +131,7 @@
         <div class="col-lg-8 col-lg-offset-2 text-center">
           <h2 class="section-heading">Hafðu samband!</h2>
           <hr class="primary">
-          <p>Ertu með spurningu? Þá ertu á réttum stað! Sendu félaginu facebook skilaboð eða póst á netfang og við munum svara eins fljótt og auðið er!</p>
+          <p>Ertu með spurningu? Þá ertu á réttum stað! Sendu félaginu facebook skilaboð eða tölvupóst og við munum svara eins fljótt og auðið er!</p>
         </div>
       </div>
       <div class="row">

@@ -9,8 +9,13 @@ https://docs.djangoproject.com/en/1.10/howto/deployment/wsgi/
 
 import os
 
+
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "StigullWeb.settings")
+os.environ["DJANGO_SETTINGS_MODULE"] = "StigullWeb.settings"
 
+#from django.contrib.auth.handlers.modwsgi import check_password
+#from django.core.handlers.wsgi import WSGIHandler
+
+#application = WSGIHandler()
 application = get_wsgi_application()

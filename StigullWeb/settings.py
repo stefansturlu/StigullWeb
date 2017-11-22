@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# ------- for static files (added by Stefán)------
+# ------- for static files (added by Stefan )------
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 STATICFILES_DIRS = (
@@ -32,9 +32,10 @@ STATICFILES_DIRS = (
 SECRET_KEY = 'np*_nivgepw0bjanu@pwefv1!ghpl*@pe00q%e#e8fo!4q@bwh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['130.208.143.3', 'stigull.rhi.hi.is', 'sigma.rhi.hi.is', '127.0.0.1']
 
 
 # Application definition
@@ -88,8 +89,12 @@ WSGI_APPLICATION = 'StigullWeb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'stigullnewdatabase',
+        'USER': 'FYLLIST_INN_AF_TOLVUHIRDI_STIGULS',
+        'PASSWORD': 'FYLLIST_INN_AF_TOLVUHIRDI_STIGULS',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -132,5 +137,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-
+STATIC_ROOT = '/home/ares/StigullWeb/static/'
 STATIC_URL = '/static/'
