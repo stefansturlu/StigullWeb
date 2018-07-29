@@ -32,7 +32,7 @@ STATICFILES_DIRS = (
 SECRET_KEY = 'np*_nivgepw0bjanu@pwefv1!ghpl*@pe00q%e#e8fo!4q@bwh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['130.208.143.3', 'stigull.rhi.hi.is', 'sigma.rhi.hi.is', '127.0.0.1']
@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'myapp',
 ]
 
 MIDDLEWARE = [
@@ -87,17 +86,13 @@ WSGI_APPLICATION = 'StigullWeb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
+# Notað í þróun, á server yfirskrifast þetta í settings_local.py
+DATABASES = { 
     'default': {
-	'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'stigullnewdatabase',
-        'USER': 'FYLLIST_INN_AF_TOLVUHIRDI_STIGULS',
-        'PASSWORD': 'FYLLIST_INN_AF_TOLVUHIRDI_STIGULS',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -139,3 +134,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 STATIC_ROOT = '/home/ares/StigullWeb/static/'
 STATIC_URL = '/static/'
+
+
+# Importa settings fyrir database og email smpt server.
+# settings_local.py er á servernum, en ekki á github, þannig að fólk geti ekki
+# séð lykilorðin á netinu.
+try:
+    from .settings_local import *
+except ImportError:
+    pass
+

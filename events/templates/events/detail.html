@@ -2,7 +2,7 @@
 
 {% block content %}
 <section class="container-fluid">
-  <h1> {{ event.title }} </h1>
+  <h1> {{ event.title }} {% if event.is_transportation %} <i class="fa fa-1x fa-bus sr-icons"></i> {% endif %} </h1>
   <h2> {{ event.location }} </h2>
   <h3> {{ event.starts|date:"d. F" }} frá {{ event.starts|date:"H:i" }} til {{ event.ends|date:"H:i" }} </h3>
   <h4> Mæting {{ event.arrive_where }} klukkan {{ event.arrive_when|date:"Y-m-d H:i" }}  </h4>
@@ -11,17 +11,37 @@
   <p> {{ event.info }} </p>
 
 {% if user.is_authenticated %}
-  {% if user in event.get_attending_users %}
-  <a href="{% url 'events:event_cancel_attendance' pk=event.pk %}" class="btn btn-danger"> Afskráning</a>
+  {% if user in event.get_registrated_users %}
+    <a href="{% url 'events:event_cancel_attendance' pk=event.pk %}" class="btn btn-danger"> Afskráning</a>
+    {% if event.is_transportation %}
+      {% if user in event.get_transportation_list %}
+        <a href="{% url 'events:event_cancel_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá úr rútu </a>
+      {% else %}
+        <a href="{% url 'events:event_add_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá í rútu </a>
+      {% endif %}
+    {% endif %}
   {% else %}
-  <a href="{% url 'events:event_add_attendance' pk=event.pk %}" class="btn btn-success"> Skráning</a>
+    <a href="{% url 'events:event_add_attendance' pk=event.pk %}" class="btn btn-success"> Skráning</a>
   {% endif %}
 {% endif %}
   <br><br>
+  <h4> Mætingarlisti {% if event.has_registration_limit %}(Hámark: {{ event.registration_limit }}){% endif %}</h4>
   <ol type="1">
-    {% for c in event.get_registrations %}
-    <li>{{ c.user.first_name }} {{ c.user.last_name}} - {{ c.time_registered|date:"d. F, H:i:s" }}</li>
+    {% for c in event.get_attending_registrations %}
+    <li>{{ c.user.first_name }} {{ c.user.last_name}} - {{ c.time_registered|date:"d. F, H:i:s" }} 
+      {% if c.using_transportation %} <i class="fa fa-1x fa-bus"></i> {% endif %} 
+    </li>
     {% endfor %}
   </ol>
+
+  {% if event.get_waiting_list %} <h4>Biðlisti</h4> {% endif %}
+  <ol type="1">
+    {% for c in event.get_waiting_list %}
+    <li>{{ c.user.first_name }} {{ c.user.last_name}} - {{ c.time_registered|date:"d. F, H:i:s" }} 
+      {% if c.using_transportation %} <i class="fa fa-1x fa-bus"></i> {% endif %} 
+    </li>
+    {% endfor %}
+  </ol>
+
 </section>
 {% endblock %}

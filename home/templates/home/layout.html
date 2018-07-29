@@ -60,7 +60,6 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
 
-<!-- Hafa login input i navbar
           {% if not request.user.is_authenticated and not "login" in request.get_full_path %}
             <li>
               <form class="navbar-form navbar-right" action="{% url 'login' %}" method="post">{% csrf_token %}
@@ -74,7 +73,6 @@
               <a href="/logout/">{{ user.first_name }} - Útskráning</a>
             </li>
           {% endif %}
--->
           <li>
             <a href="/">Heim</a>
           </li>
