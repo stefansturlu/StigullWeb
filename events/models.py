@@ -48,13 +48,13 @@ class Event(models.Model):
 
 
     def add_user_to_list_of_attendees(self, user):
-        if not user.is_authenticated():
+        if not user.is_authenticated() and self.is_registration_active():
             return
         registration = EventRegistration.objects.create(user = user, event = self,
                                                         time_registered = timezone.now())
 
     def remove_user_from_list_of_attendees(self, user):
-        if not user.is_authenticated():
+        if not user.is_authenticated() and self.is_registration_active():
             return
         registration = EventRegistration.objects.get(user = user, event = self)
         registration.delete()
@@ -74,6 +74,7 @@ class Event(models.Model):
 
     def get_registrations(self):
         return EventRegistration.objects.filter(event = self)
+
     def get_registrated_users(self):
         return [r.user for r in self.get_registrations()]
 
@@ -99,6 +100,10 @@ class Event(models.Model):
         attending_users = self.get_registrations()
         return attending_users[self.registration_limit:]
 
+    def is_registration_active(self):
+        now = datetime.datetime.now()
+        return (self.registration_starts < now and now < self.ends)
+    
 
 
 

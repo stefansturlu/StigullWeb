@@ -32,7 +32,7 @@ STATICFILES_DIRS = (
 SECRET_KEY = 'np*_nivgepw0bjanu@pwefv1!ghpl*@pe00q%e#e8fo!4q@bwh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['130.208.143.3', 'stigull.rhi.hi.is', 'sigma.rhi.hi.is', '127.0.0.1']
@@ -121,13 +121,16 @@ LOGIN_REDIRECT_URL = '/'
 
 LANGUAGE_CODE = 'is'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Atlantic/Reykjavik'
+DATE_FORMAT = "d.m.Y"
+DATETIME_FORMAT = "d.m.Y H:i"
+TIME_FORMAT = "H:i"
 
 USE_I18N = True
 
 USE_L10N = False
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
