@@ -119,10 +119,6 @@ class Event(models.Model):
         return str(ar)+"-"+str(ar-2000+1)
 
 
-def get_events():
-    return Event.objects
-
-
 
 
 class EventRegistration(models.Model):
