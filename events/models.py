@@ -99,6 +99,9 @@ class Event(models.Model):
         attending_users = self.get_registrations()
         return attending_users[self.registration_limit:]
 
+    def is_event_over(self):
+        return self.ends < datetime.datetime.now()
+    
     def is_registration_active(self):
         now = datetime.datetime.now()
         return (self.registration_starts < now and now < self.ends)

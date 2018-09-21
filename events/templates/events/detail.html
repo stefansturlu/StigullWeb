@@ -8,23 +8,25 @@
         <h1> {{ event.title }} {% if event.is_transportation %} <i class="fa fa-1x fa-bus sr-icons"></i> {% endif %} </h1>
       </div>
       <div class="col-lg-4 col-md-4 text-center">
-        {% if user.is_authenticated and not event.is_registration_active %}
-          <h4>Skráning hefst: </h4>
-          <h4> {{ event.registration_starts|date:"D n. E H:i" }} </h4>
-        {% endif %}
-        {% if user.is_authenticated and event.is_registration_active %}
-          {% if user in event.get_registrated_users %}
-            <h1><a href="{% url 'events:event_cancel_attendance' pk=event.pk %}" class="btn btn-danger"> Afskráning</a>
-            {% if event.is_transportation %}
-              {% if user in event.get_transportation_list %}
-                <a href="{% url 'events:event_cancel_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá úr rútu </a>
-              {% else %}
-                <a href="{% url 'events:event_add_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá í rútu </a>
+        {% if not event.is_event_over %}
+          {% if user.is_authenticated and not event.is_registration_active %}
+            <h4>Skráning hefst: </h4>
+            <h4> {{ event.registration_starts|date:"D n. E H:i" }} </h4>
+          {% endif %}
+          {% if user.is_authenticated and event.is_registration_active %}
+            {% if user in event.get_registrated_users %}
+              <h1><a href="{% url 'events:event_cancel_attendance' pk=event.pk %}" class="btn btn-danger"> Afskráning</a>
+              {% if event.is_transportation %}
+                {% if user in event.get_transportation_list %}
+                  <a href="{% url 'events:event_cancel_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá úr rútu </a>
+                {% else %}
+                  <a href="{% url 'events:event_add_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá í rútu </a>
+                {% endif %}
               {% endif %}
+              </h1>
+            {% else %}
+              <h1><a href="{% url 'events:event_add_attendance' pk=event.pk %}" class="btn btn-success"> Skráning</a></h1>
             {% endif %}
-            </h1>
-          {% else %}
-            <h1><a href="{% url 'events:event_add_attendance' pk=event.pk %}" class="btn btn-success"> Skráning</a></h1>
           {% endif %}
         {% endif %}
       </div>
