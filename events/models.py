@@ -71,7 +71,6 @@ class Event(models.Model):
             registration.using_transportation = False
             registration.save()
 
-
     def get_registrations(self):
         return EventRegistration.objects.filter(event = self)
 
@@ -104,6 +103,24 @@ class Event(models.Model):
         now = datetime.datetime.now()
         return (self.registration_starts < now and now < self.ends)
     
+    def get_event_argangur(self):
+        # Miðast við að árgangur nái frá júní til maí
+        ar = self.starts.year
+        manudur = self.starts.month
+        if manudur < 6:
+            ar = ar-1
+        return str(ar)+"-"+str(ar-2000+1)
+
+    def get_argangur_from_date(dags):
+        ar = dags.year
+        manudur = dags.month
+        if manudur < 6:
+            ar = ar-1
+        return str(ar)+"-"+str(ar-2000+1)
+
+
+def get_events():
+    return Event.objects
 
 
 

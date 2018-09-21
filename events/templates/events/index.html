@@ -2,12 +2,18 @@
 
 {% block content %}
 <section class="container-fluid">
-  <h1>Viðburðir</h1>
-  <ul>
-    {% for event in event_list %}
-      <li><a href="{% url 'events:detail' event.id %}">{{ event.title }} </a></li>
-    {% endfor %}
-  </ul>
+  <div class="row">
+    <div class="col-lg-1 col-md-1"></div>
+    <div class="col-lg-10 col-md-10">
+      <h1>Viðburðir</h1>
+      <ul>
+        {% for event in event_list %}
+          <li><a href="{% url 'events:detail' event.id %}"> {{ event.starts|date:"j.n.y" }} {{ event.title }} </a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-lg-1 col-md-1"></div>
+  </div>
 </section>
 
 {% endblock %}

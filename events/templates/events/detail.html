@@ -1,6 +1,85 @@
 {% extends 'home/layout.html' %}
 
 {% block content %}
+<section class="bg-warning">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 text-center">
+        <h1> {{ event.title }} {% if event.is_transportation %} <i class="fa fa-1x fa-bus sr-icons"></i> {% endif %} </h1>
+      </div>
+      <div class="col-lg-4 col-md-4 text-center">
+        {% if user.is_authenticated and not event.is_registration_active %}
+          <h4>Skráning hefst: </h4>
+          <h4> {{ event.registration_starts|date:"D n. E H:i" }} </h4>
+        {% endif %}
+        {% if user.is_authenticated and event.is_registration_active %}
+          {% if user in event.get_registrated_users %}
+            <h1><a href="{% url 'events:event_cancel_attendance' pk=event.pk %}" class="btn btn-danger"> Afskráning</a>
+            {% if event.is_transportation %}
+              {% if user in event.get_transportation_list %}
+                <a href="{% url 'events:event_cancel_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá úr rútu </a>
+              {% else %}
+                <a href="{% url 'events:event_add_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá í rútu </a>
+              {% endif %}
+            {% endif %}
+            </h1>
+          {% else %}
+            <h1><a href="{% url 'events:event_add_attendance' pk=event.pk %}" class="btn btn-success"> Skráning</a></h1>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-md-8 text-center">
+        <h3> {{ event.location }} </h3>
+        {% if event.arrive_where %} <h6> Mætingarstaður: {{ event.arrive_where }} </h6> {% endif %}
+      </div>
+      <div class="col-lg-4 col-md-4 text-center">
+        <h3> {{ event.starts|date:"j. b" }} {{ event.starts|date:"H:i" }}-{{ event.ends|date:"H:i" }} </h3>
+        {% if event.arrive_when %} <h6> Mætingartími: {{ event.arrive_when|date:"d. b H:i" }}</h6>{% endif %}
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-lg-1 col-md-1 text-center">
+      </div>
+      <div class="col-lg-10 col-md-10 text-center">
+        <p> {{ event.info }} </p>
+      </div>
+      <div class="col-lg-1 col-md-1 text-center">
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-lg-1 col-md-1">
+      </div>
+      <div class="col-lg-10 col-md-10">
+      <h4> Mætingarlisti {% if event.has_registration_limit %}(Hámark: {{ event.registration_limit }}){% endif %}</h4>
+      <ol type="1">
+        {% for c in event.get_attending_registrations %}
+        <li>{{ c.user.first_name }} {{ c.user.last_name}} - {{ c.time_registered|date:"d.n, H:i:s" }} 
+          {% if c.using_transportation %} <i class="fa fa-1x fa-bus"></i> {% endif %} 
+        </li>
+        {% endfor %}
+      </ol>
+
+      {% if event.get_waiting_list and event.has_registration_limit %} <h4>Biðlisti</h4>
+        <ol type="1">
+          {% for c in event.get_waiting_list %}
+          <li>{{ c.user.first_name }} {{ c.user.last_name}} - {{ c.time_registered|date:"d. b, H:i:s" }} 
+            {% if c.using_transportation %} <i class="fa fa-1x fa-bus"></i> {% endif %} 
+          </li>
+          {% endfor %}
+        </ol>
+      {% endif %}
+
+      </div>
+      <div class="col-lg-1 col-md-1">
+      </div>
+    </div>
+  </div>
+</section>
+<!--
 <section class="container-fluid">
   <h1> {{ event.title }} {% if event.is_transportation %} <i class="fa fa-1x fa-bus sr-icons"></i> {% endif %} </h1>
   <h2> {{ event.location }} </h2>
@@ -12,20 +91,20 @@
   <h6> Skráning hefst {{ event.registration_starts|date:"l H:i" }} </h6>
   <p> {{ event.info }} </p>
 
-{% if user.is_authenticated and event.is_registration_active %}
-  {% if user in event.get_registrated_users %}
-    <a href="{% url 'events:event_cancel_attendance' pk=event.pk %}" class="btn btn-danger"> Afskráning</a>
-    {% if event.is_transportation %}
-      {% if user in event.get_transportation_list %}
-        <a href="{% url 'events:event_cancel_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá úr rútu </a>
-      {% else %}
-        <a href="{% url 'events:event_add_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá í rútu </a>
+  {% if user.is_authenticated and event.is_registration_active %}
+    {% if user in event.get_registrated_users %}
+      <a href="{% url 'events:event_cancel_attendance' pk=event.pk %}" class="btn btn-danger"> Afskráning</a>
+      {% if event.is_transportation %}
+        {% if user in event.get_transportation_list %}
+          <a href="{% url 'events:event_cancel_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá úr rútu </a>
+        {% else %}
+          <a href="{% url 'events:event_add_transportation_attendance' pk=event.pk %}" class="btn btn-warning"> Skrá í rútu </a>
+        {% endif %}
       {% endif %}
+    {% else %}
+      <a href="{% url 'events:event_add_attendance' pk=event.pk %}" class="btn btn-success"> Skráning</a>
     {% endif %}
-  {% else %}
-    <a href="{% url 'events:event_add_attendance' pk=event.pk %}" class="btn btn-success"> Skráning</a>
   {% endif %}
-{% endif %}
   <br><br>
   <h4> Mætingarlisti {% if event.has_registration_limit %}(Hámark: {{ event.registration_limit }}){% endif %}</h4>
   <ol type="1">
@@ -47,4 +126,5 @@
   {% endif %}
 
 </section>
+-->
 {% endblock %}

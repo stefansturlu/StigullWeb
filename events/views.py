@@ -10,6 +10,7 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Event.objects.all()
 
+
 class DetailView(generic.DetailView):
     model = Event
     template_name = 'events/detail.html'

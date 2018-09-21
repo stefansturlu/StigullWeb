@@ -41,6 +41,10 @@
   <link rel="shortcut icon" href="{% static '/favicon/favicon.ico' %}">
   <meta name="msapplication-config" content="{% static '/favicon/browserconfig.xml' %}">
   <meta name="theme-color" content="#ffffff">
+
+  <!-- Open graph objects -->
+  <meta property="og:image" content="{% static 'home/img/StigullLogo.png' %}">
+
 </head>
 
 <body id="page-top">
@@ -72,6 +76,11 @@
             <li>
               <a href="/logout/">{{ user.first_name }} - Útskráning</a>
             </li>
+          {% endif %}
+          {% if user.is_superuser %}
+          <li>
+            <a href="/admin/">Vefstjórn</a>
+          </li>
           {% endif %}
           <li>
             <a href="/">Heim</a>

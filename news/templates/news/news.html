@@ -2,14 +2,16 @@
 
 {% block content %}
 
-<section class="container-fluid" id="news">
-  <h1>Fréttir</h1>
-  <div class="container">
-
-    {% for post in object_list %}
-      <h5>{{ post.date|date:"Y-m-d" }}<a href="/news/{{post.id}}"> {{post.title}}</a></h5>
-    {% endfor %}
-
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-lg-1 col-md-1"></div>
+    <div class="col-lg-10 col-md-10">
+      <h1>Fréttir</h1>
+      {% for post in object_list %}
+        <h5>{{ post.date|date:"Y-m-d" }}<a href="/news/{{post.id}}"> {{post.title}}</a></h5>
+      {% endfor %}
+    </div>
+    <div class="col-lg-1 col-md-1"></div>
   </div>
 </section>
 
