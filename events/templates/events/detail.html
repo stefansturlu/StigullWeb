@@ -11,7 +11,7 @@
         {% if not event.is_event_over %}
           {% if user.is_authenticated and not event.is_registration_active %}
             <h4>Skráning hefst: </h4>
-            <h4> {{ event.registration_starts|date:"D n. E H:i" }} </h4>
+            <h4> {{ event.registration_starts|date:"D j. E H:i" }} </h4>
           {% endif %}
           {% if user.is_authenticated and event.is_registration_active %}
             {% if user in event.get_registrated_users %}
