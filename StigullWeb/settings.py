@@ -35,7 +35,7 @@ SECRET_KEY = 'np*_nivgepw0bjanu@pwefv1!ghpl*@pe00q%e#e8fo!4q@bwh'
 DEBUG = True
 
 #ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['130.208.143.3', 'stigull.rhi.hi.is', 'sigma.rhi.hi.is', '127.0.0.1']
+ALLOWED_HOSTS = ['130.208.143.3', 'stigull.is', 'stigull.rhi.hi.is', 'sigma.rhi.hi.is', '127.0.0.1']
 
 
 # Application definition
