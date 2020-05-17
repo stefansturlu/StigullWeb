@@ -91,7 +91,7 @@
   <h5>  {% if event.has_registration_limit %} Hámarksfjöldi gesta er {{ event.registration_limit }}
         {% else %} Enginn hámarksfjöldi 🎉 {% endif %} </h5>
   <h6> Skráning hefst {{ event.registration_starts|date:"l H:i" }} </h6>
-  <p> {{ event.info }} </p>
+  <p> {{ event.info|safe|linebreaks }} </p>
 
   {% if user.is_authenticated and event.is_registration_active %}
     {% if user in event.get_registrated_users %}
