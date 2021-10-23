@@ -7,14 +7,13 @@ ATH: þarf að skrifa nákvæmara README.md
 
 # Leiðbeiningar fyrir Stigulssíðuna
 Þessar leiðbeiningar miðast við Python 3.6.5 (þó þær ættu að virka á öðrum
-útgáfum af python) og miðast einnig við að unnið sé á Mac (eða öðrum Unix
-eða Unix-like kerfum).
+útgáfum af python).
 
 ## 1. Setja upp Virtual Environment með Python
 Ég mæli eindregið að nota virtual environment til að vinna í síðunni, og
 installa þeim pökkum sem þarf inni í virtual environmentinu.
 
-Í bash skelinni (sem er default í terminal á Mac tölvum) fer maður í þá möppu
+Í skel fer maður í þá möppu
 sem maður vill hafa virtual environmentið (t.d. á Desktop) og keyrir:
 
 python3 -m venv ~/Desktop/stigullVenv
